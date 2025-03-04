@@ -3,6 +3,17 @@ const sizePick = document.querySelector("#size-pick");
 const confirmSize = document.querySelector('#confirm-size');
 const sizePicker = document.querySelector('#size-picker');
 const deleteMode = document.querySelector('#delete-mode');
+const errorSize = document.querySelector('#error-size');
+const randomColors = document.querySelector('#sketch-color');
+const blackColor = document.querySelector('#black-color');
+
+//generate random color 
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256); 
+    const g = Math.floor(Math.random() * 256); 
+    const b = Math.floor(Math.random() * 256); 
+    return `rgb(${r}, ${g}, ${b})`; 
+}
 
 function makeSketchingGrid(gridSize = 16,color = 'black'){
     mainDiv.innerHTML = '';
@@ -22,7 +33,9 @@ function makeSketchingGrid(gridSize = 16,color = 'black'){
     //drawing(hover effect)
     square.addEventListener('mouseover', function(){
         square.style.background = `${color}`
-    })    
+    }) 
+    
+    
 });
 
 //delete mode
@@ -33,6 +46,25 @@ deleteMode.addEventListener('click',()=>{
         }) 
     })
 })
+
+//random colors
+randomColors.addEventListener('click', ()=>{
+    squares.forEach(square => {
+        square.addEventListener('mouseover', function(){
+            square.style.background = getRandomColor();
+        })
+    });
+} )
+
+//black color mode
+blackColor.addEventListener('click',()=>{
+    squares.forEach(square => {
+        square.addEventListener('mouseover', function(){
+            square.style.background = `black`;
+        }) 
+    })
+})
+
 }
 makeSketchingGrid();
 
@@ -61,5 +93,11 @@ back.addEventListener('click', () =>{
 
 confirmSize.addEventListener('click', () => {
     let chosenSize = sizePicker.value;
-    makeSketchingGrid(chosenSize);
+    if(chosenSize>0 && chosenSize<101 ){
+        errorSize.innerText = '';
+        makeSketchingGrid(chosenSize);
+    }else{
+        errorSize.innerText = '*Choose a number between 1 and 100';
+    }
+    
 });

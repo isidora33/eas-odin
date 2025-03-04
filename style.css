@@ -42,7 +42,7 @@ input {
 }
 
 #reset {
-  background-color: rgb(154, 141, 225);
+  background-color: rgb(225, 60, 60);
 }
 
 #delete-mode {
@@ -55,6 +55,7 @@ input {
   width: 90vh;
   height: 90vh;
   margin: 0 auto;
+  margin-top: 2px;
 }
 
 .square {
@@ -66,7 +67,7 @@ input {
   width: 90vh;
   margin: 0 auto;
   align-items: center;
-  padding: 1% 0%;
+  padding-top: 1%;
   justify-content: space-between;
 }
 
@@ -85,4 +86,17 @@ input {
 
 #back {
   margin: 4px;
+}
+
+#error-size {
+  width: 90vh;
+  margin: 0 auto;
+  font-size: smaller;
+  text-align: end;
+  color: rgb(221, 8, 8);
+}
+
+#black-color {
+  color: white;
+  background-color: black;
 }
